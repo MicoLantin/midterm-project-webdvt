@@ -286,7 +286,7 @@ a {
 
 .companion {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 12px;
   flex: 1;
   min-width: 0;
@@ -347,6 +347,8 @@ a {
   line-height: 1.5;
   text-align: left;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .companion__bubble::before {
@@ -366,7 +368,7 @@ a {
 .balance-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 4px;
 }
 
@@ -567,37 +569,37 @@ a {
 
 .light-switch {
   width: 34px;
+  height: 40px;
   flex: none;
   border: none;
   background: none;
   padding: 0;
   cursor: pointer;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.light-switch__cord {
-  width: 1.5px;
-  height: 10px;
-  background: currentColor;
-  transition: transform 0.12s ease;
-  transform-origin: top;
-}
-
-.light-switch:active .light-switch__cord {
-  transform: scaleY(1.4);
+  display: block;
 }
 
 .light-switch__bulb {
-  width: 26px;
-  height: 32px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 68%;
+  background-size: 600% auto;
+  /* Light theme: source is white lines on black. Invert to black-on-white,
+     then multiply so the (now-white) card disappears and lines stay black. */
+  filter: invert(1);
+  mix-blend-mode: multiply;
 }
 
-.light-switch__filament {
-  fill: currentColor;
-  opacity: 0.85;
+/* Dark theme: no invert needed — screen hides the black background and
+   forces the bulb's own white lines to render white. */
+:root[data-theme='dark'] .light-switch__bulb {
+  filter: none;
+  mix-blend-mode: screen;
+}
+
+.light-switch:active .light-switch__bulb {
+  transform: scale(0.92);
 }
 
 .light-switch:focus-visible {

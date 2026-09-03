@@ -7,7 +7,6 @@ import { playLightSwitchClick } from '../../utils/sound';
 const FRAMES = [frame1, frame2, frame3];
 const FRAME_INTERVAL_MS = 260;
 const FLY_DURATION_MS = 650;
-const AUTO_ENTER_DELAY_MS = 2000;
 
 function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -39,13 +38,6 @@ export default function Splash({ onEnter }) {
     setFlying(true);
     window.setTimeout(onEnter, FLY_DURATION_MS);
   }
-
-  // Lights turn on by themselves shortly after landing — clicking just skips the wait.
-  useEffect(() => {
-    const id = window.setTimeout(handleEnter, AUTO_ENTER_DELAY_MS);
-    return () => window.clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div
