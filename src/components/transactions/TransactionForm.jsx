@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { CATEGORIES } from '../../utils/categories';
+import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from '../../utils/categories';
+
+function categoriesFor(type) {
+  return type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+}
 
 function validate(values) {
   const errors = {};
@@ -21,12 +25,17 @@ export default function TransactionForm({ initialValues, submitLabel, onSubmit }
     description: initialValues?.description ?? '',
     amount: initialValues?.amount ?? '',
     type: initialValues?.type ?? 'expense',
-    category: initialValues?.category ?? CATEGORIES[0],
+    category: initialValues?.category ?? categoriesFor(initialValues?.type ?? 'expense')[0],
     date: initialValues?.date ?? new Date().toISOString().slice(0, 10),
   }));
   const [errors, setErrors] = useState({});
 
   function handleChange(field, value) {
+    if (field === 'type') {
+      // Switching type changes which categories are valid, so reset to that list's first option.
+      setValues((prev) => ({ ...prev, type: value, category: categoriesFor(value)[0] }));
+      return;
+    }
     setValues((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -72,7 +81,7 @@ export default function TransactionForm({ initialValues, submitLabel, onSubmit }
         <label className="field">
           <span>category</span>
           <select value={values.category} onChange={(e) => handleChange('category', e.target.value)}>
-            {CATEGORIES.map((c) => (
+            {categoriesFor(values.type).map((c) => (
               <option key={c} value={c}>
                 {c}
               </option>
