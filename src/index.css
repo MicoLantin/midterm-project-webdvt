@@ -32,7 +32,6 @@ body {
   color: var(--ink);
   font-family: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 h1,
@@ -61,6 +60,10 @@ input,
 select {
   font-family: inherit;
   color: inherit;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 a {
