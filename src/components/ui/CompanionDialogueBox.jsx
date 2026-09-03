@@ -1,4 +1,12 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import smileFace from '../../assets/companion/smile.jpg';
+import talkingFace from '../../assets/companion/talking.jpg';
+import sadFace from '../../assets/companion/sad.jpg';
+
+// 'sad' is imported and mapped here so it's ready, but nothing sets
+// face to 'sad' yet — that trigger condition is still to be decided.
+const FACES = { smile: smileFace, talking: talkingFace, sad: sadFace };
+const TALK_DURATION_MS = 1600;
 
 const EMPTY_LINES = ["Wala pa tay transaction. I'm bored, log something."];
 const LOW_BALANCE_LINES = ['Paldo ka na naman boi! Angasan mo pa!', 'Zero na imong kwarta, chill lang sa gastos.'];
@@ -19,10 +27,20 @@ export default function CompanionDialogueBox({ balance, hasTransactions, latestE
     [balance, hasTransactions, latestExpense],
   );
 
+  const [face, setFace] = useState('smile');
+  const timeoutRef = useRef(null);
+
+  // Whenever the line changes, the companion "talks" briefly, then settles back to smiling.
+  useEffect(() => {
+    setFace('talking');
+    timeoutRef.current = window.setTimeout(() => setFace('smile'), TALK_DURATION_MS);
+    return () => window.clearTimeout(timeoutRef.current);
+  }, [line]);
+
   return (
     <div className="companion">
-      <div className="companion__avatar" aria-hidden="true">
-        :0
+      <div className="companion__avatar">
+        <img src={FACES[face]} alt="" className="companion__face" draggable={false} />
       </div>
       <div className="companion__bubble">{line}</div>
     </div>

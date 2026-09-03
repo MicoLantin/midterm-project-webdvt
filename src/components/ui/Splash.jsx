@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import frame1 from '../../assets/splash/frame1.jpg';
 import frame2 from '../../assets/splash/frame2.jpg';
 import frame3 from '../../assets/splash/frame3.jpg';
+import { playLightSwitchClick } from '../../utils/sound';
 
 const FRAMES = [frame1, frame2, frame3];
 const FRAME_INTERVAL_MS = 260;
 const FLY_DURATION_MS = 650;
+const AUTO_ENTER_DELAY_MS = 2000;
 
 function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,6 +17,7 @@ export default function Splash({ onEnter }) {
   const [frameIndex, setFrameIndex] = useState(0);
   const [flying, setFlying] = useState(false);
   const reduced = useRef(prefersReducedMotion());
+  const triggeredRef = useRef(false);
 
   useEffect(() => {
     if (reduced.current) return undefined;
@@ -25,7 +28,10 @@ export default function Splash({ onEnter }) {
   }, []);
 
   function handleEnter() {
-    if (flying) return;
+    if (triggeredRef.current) return;
+    triggeredRef.current = true;
+    playLightSwitchClick();
+
     if (reduced.current) {
       onEnter();
       return;
@@ -33,6 +39,13 @@ export default function Splash({ onEnter }) {
     setFlying(true);
     window.setTimeout(onEnter, FLY_DURATION_MS);
   }
+
+  // Lights turn on by themselves shortly after landing — clicking just skips the wait.
+  useEffect(() => {
+    const id = window.setTimeout(handleEnter, AUTO_ENTER_DELAY_MS);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div
