@@ -8,10 +8,10 @@ import sadFace from '../../assets/companion/sad.jpg';
 const FACES = { smile: smileFace, talking: talkingFace, sad: sadFace };
 const TALK_DURATION_MS = 1600;
 
-const EMPTY_LINES = ["Wala pa tay transaction. I'm bored, log something."];
-const LOW_BALANCE_LINES = ['Paldo ka na naman boi! Angasan mo pa!', 'Zero na imong kwarta, chill lang sa gastos.'];
-const BIG_EXPENSE_LINES = ['Kadako sa gasto ha... sigurado ka?'];
-const HEALTHY_LINES = ['Okay ra imong balance, keep it up.', 'Naa pa diay ka kwarta? Impressive.'];
+const EMPTY_LINES = ["No transactions yet. I'm bored, log something na."];
+const LOW_BALANCE_LINES = ['Broke ka na naman, boi! Ang yabang mo pa!', 'Konti na lang imong kwarta. Chill on the spending.'];
+const BIG_EXPENSE_LINES = ['Ang laki naman ng gastos mo... you sure about that?'];
+const HEALTHY_LINES = ['Your balance looks fine, keep it up!', 'You still have money? Impressive talaga.'];
 
 function pickLine({ balance, hasTransactions, latestExpense }) {
   if (!hasTransactions) return EMPTY_LINES[0];
