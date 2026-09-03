@@ -1,5 +1,5 @@
 import { useTheme } from '../../context/ThemeContext';
-import bulbImg from '../../assets/splash/frame1.jpg';
+import bulbImg from '../../assets/bulb.jpg';
 
 export default function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();
