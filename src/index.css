@@ -306,12 +306,9 @@ a {
 }
 
 .companion__face {
-  display: block;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-position: 50% 32%;
-  background-size: 145% auto;
+  object-fit: cover;
   mix-blend-mode: multiply;
 }
 
@@ -586,8 +583,8 @@ a {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
-  background-position: 50% 55%;
-  background-size: 480% auto;
+  background-position: 50% 0%;
+  background-size: 175% auto;
   /* Light theme: source is white lines on black. Invert to black-on-white,
      then multiply so the (now-white) card disappears and lines stay black. */
   filter: invert(1);

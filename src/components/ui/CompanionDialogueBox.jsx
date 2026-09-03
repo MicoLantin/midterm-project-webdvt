@@ -40,7 +40,7 @@ export default function CompanionDialogueBox({ balance, hasTransactions, latestE
   return (
     <div className="companion">
       <div className="companion__avatar">
-        <span className="companion__face" style={{ backgroundImage: `url(${FACES[face]})` }} />
+        <img src={FACES[face]} alt="" className="companion__face" draggable={false} />
       </div>
       <div className="companion__bubble">{line}</div>
     </div>
