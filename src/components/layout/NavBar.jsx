@@ -32,21 +32,19 @@ const LINKS = [
 export default function NavBar() {
   return (
     <nav className="nav-bar" aria-label="primary">
-      <div className="nav-bar__inner">
-        {LINKS.map((link) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            end={link.end}
-            className={({ isActive }) => `nav-bar__item${isActive ? ' is-active' : ''}`}
-          >
-            <span className="nav-bar__icon" aria-hidden="true">
-              {ICONS[link.icon]}
-            </span>
-            <span>{link.label}</span>
-          </NavLink>
-        ))}
-      </div>
+      {LINKS.map((link) => (
+        <NavLink
+          key={link.to}
+          to={link.to}
+          end={link.end}
+          className={({ isActive }) => `nav-bar__item${isActive ? ' is-active' : ''}`}
+        >
+          <span className="nav-bar__icon" aria-hidden="true">
+            {ICONS[link.icon]}
+          </span>
+          <span>{link.label}</span>
+        </NavLink>
+      ))}
     </nav>
   );
 }
