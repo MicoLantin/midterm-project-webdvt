@@ -675,6 +675,57 @@ a {
   background: var(--ink);
 }
 
+/* ---------- Budget tracker ---------- */
+
+.budget-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.budget-tracker__tabs {
+  display: flex;
+  border: 2px solid var(--line);
+}
+
+.budget-tracker__tab {
+  flex: 1;
+  border: none;
+  border-right: 2px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 8px 4px;
+  cursor: pointer;
+}
+
+.budget-tracker__tab:last-child {
+  border-right: none;
+}
+
+.budget-tracker__tab.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.budget-tracker__input {
+  max-width: 220px;
+}
+
+.budget-tracker__summary {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Over-budget gets a diagonal hatch instead of a solid fill — stays
+   readable without relying on color, which the monochrome palette can't use. */
+.breakdown__bar--over .breakdown__bar-fill {
+  background: repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 4px, var(--panel) 4px, var(--panel) 8px);
+}
+
 /* ---------- Laptop / desktop (mobile styles above are untouched) ---------- */
 
 @media (min-width: 900px) {

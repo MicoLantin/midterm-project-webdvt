@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTransactions } from '../context/TransactionsContext';
 import CategoryBreakdown from '../components/transactions/CategoryBreakdown';
+import BudgetTracker from '../components/transactions/BudgetTracker';
 import ThemeToggleButton from '../components/ui/ThemeToggleButton';
 import Panel from '../components/ui/Panel';
 import { formatCurrency } from '../utils/format';
@@ -43,6 +44,11 @@ export default function Summary() {
           <strong>{formatCurrency(totalExpense)}</strong>
         </Panel>
       </div>
+
+      <Panel>
+        <h2>budget</h2>
+        <BudgetTracker />
+      </Panel>
 
       <Panel>
         <h2>spending by category</h2>
