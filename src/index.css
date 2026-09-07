@@ -571,12 +571,14 @@ a {
 /* ---------- Light switch (theme toggle) ---------- */
 
 .light-switch {
-  width: 24px;
-  height: 42px;
+  width: 36px;
+  height: 58px;
   flex: none;
   border: none;
   background: none;
-  padding: 0;
+  /* Padding gives the bulb breathing room instead of touching the box
+     edges — background-size:contain still guarantees no cropping. */
+  padding: 6px 7px;
   cursor: pointer;
   display: block;
 }

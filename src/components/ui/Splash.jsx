@@ -3,14 +3,11 @@ import frame1 from '../../assets/splash/frame1.jpg';
 import frame2 from '../../assets/splash/frame2.jpg';
 import frame3 from '../../assets/splash/frame3.jpg';
 import { playLightSwitchClick } from '../../utils/sound';
+import { prefersReducedMotion } from '../../utils/motion';
 
 const FRAMES = [frame1, frame2, frame3];
 const FRAME_INTERVAL_MS = 260;
 const FLY_DURATION_MS = 650;
-
-function prefersReducedMotion() {
-  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
 
 export default function Splash({ onEnter }) {
   const [frameIndex, setFrameIndex] = useState(0);
