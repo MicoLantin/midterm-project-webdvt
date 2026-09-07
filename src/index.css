@@ -330,22 +330,6 @@ a {
   mix-blend-mode: multiply;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .companion__face {
-    animation: companionBreathe 1.8s ease-in-out infinite;
-  }
-}
-
-@keyframes companionBreathe {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-3px) scale(1.03);
-  }
-}
-
 /* Dark theme: the sprite is dark linework on a white card. Inverting first
    (dark bg, white lines) then screening lets the (now-dark) card
    background disappear into the panel while the linework renders white. */
