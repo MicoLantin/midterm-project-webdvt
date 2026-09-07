@@ -645,6 +645,7 @@ a {
   grid-template-columns: 1fr 1fr;
   gap: 14px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .summary-totals__item {
