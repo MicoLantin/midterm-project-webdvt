@@ -66,6 +66,18 @@ select {
   appearance: none;
 }
 
+/* Hide the native up/down stepper on number inputs — Chrome/Safari use
+   these pseudo-elements, Firefox needs -moz-appearance: textfield. */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 a {
   color: inherit;
 }
