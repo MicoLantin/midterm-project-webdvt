@@ -14,7 +14,7 @@ export default function AddTransaction() {
 
   return (
     <div className="page-form">
-      <h1>add transaction</h1>
+      <h1>Add transaction</h1>
       <Panel>
         <TransactionForm submitLabel="save transaction" onSubmit={handleSubmit} />
       </Panel>

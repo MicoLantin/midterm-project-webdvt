@@ -34,10 +34,10 @@ export default function CompanionDialogueBox({ balance, hasTransactions, latestE
     [balance, hasTransactions, latestExpense],
   );
 
-  // The face just reflects whether the typewriter is still revealing the line —
-  // no separate timer needed to decide how long to show "talking".
-  const { displayedText, isTyping } = useTypewriter(line);
-  const face = isTyping ? 'talking' : 'smile';
+  const { displayedText } = useTypewriter(line);
+  // Locked to the happy sprite for now — swapping to 'talking' while typing
+  // (and eventually 'sad') is still wired up below, just not enabled yet.
+  const face = 'smile';
 
   return (
     <div className="companion">

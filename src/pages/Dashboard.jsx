@@ -8,12 +8,22 @@ import BalanceCard from '../components/transactions/BalanceCard';
 import BudgetTracker from '../components/transactions/BudgetTracker';
 import FilterBar from '../components/transactions/FilterBar';
 import TransactionList from '../components/transactions/TransactionList';
+import { categoriesFor } from '../utils/categories';
 
 export default function Dashboard() {
   const [entered, setEntered] = useState(() => sessionStorage.getItem('clarity:entered') === 'true');
   const { transactions, balance } = useTransactions();
   const [category, setCategory] = useState('all');
   const [type, setType] = useState('all');
+
+  function handleTypeChange(nextType) {
+    setType(nextType);
+    // The category filter narrows with the type — if the currently
+    // selected category doesn't apply to the new type, fall back to "all".
+    if (!categoriesFor(nextType).includes(category)) {
+      setCategory('all');
+    }
+  }
 
   const filtered = useMemo(() => {
     return transactions.filter((t) => {
@@ -44,14 +54,14 @@ export default function Dashboard() {
       <BalanceCard balance={balance} />
 
       <Panel>
-        <h2>budget</h2>
+        <h2>Budget</h2>
         <BudgetTracker />
       </Panel>
 
       <Panel className="dashboard-list">
         <div className="dashboard-list__head">
-          <h2>transactions</h2>
-          <FilterBar category={category} type={type} onCategoryChange={setCategory} onTypeChange={setType} />
+          <h2>Transactions</h2>
+          <FilterBar category={category} type={type} onCategoryChange={setCategory} onTypeChange={handleTypeChange} />
         </div>
         <TransactionList transactions={filtered} />
       </Panel>

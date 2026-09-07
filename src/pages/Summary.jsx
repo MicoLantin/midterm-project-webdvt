@@ -30,7 +30,7 @@ export default function Summary() {
   return (
     <div className="page-summary">
       <div className="page-summary__head">
-        <h1>summary</h1>
+        <h1>Summary</h1>
         <ThemeToggleButton />
       </div>
 
@@ -46,12 +46,12 @@ export default function Summary() {
       </div>
 
       <Panel>
-        <h2>budget</h2>
+        <h2>Budget</h2>
         <BudgetTracker />
       </Panel>
 
       <Panel>
-        <h2>spending by category</h2>
+        <h2>Spending by category</h2>
         <CategoryBreakdown totals={totals} grandTotal={grandTotal} />
       </Panel>
     </div>

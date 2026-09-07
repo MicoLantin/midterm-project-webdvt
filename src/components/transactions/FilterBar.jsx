@@ -1,4 +1,4 @@
-import { CATEGORIES } from '../../utils/categories';
+import { categoriesFor } from '../../utils/categories';
 
 export default function FilterBar({ category, type, onCategoryChange, onTypeChange }) {
   return (
@@ -10,7 +10,7 @@ export default function FilterBar({ category, type, onCategoryChange, onTypeChan
       </select>
       <select value={category} onChange={(e) => onCategoryChange(e.target.value)} aria-label="filter by category">
         <option value="all">all categories</option>
-        {CATEGORIES.map((c) => (
+        {categoriesFor(type).map((c) => (
           <option key={c} value={c}>
             {c}
           </option>

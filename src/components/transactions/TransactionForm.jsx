@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from '../../utils/categories';
-
-function categoriesFor(type) {
-  return type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
-}
+import { categoriesFor } from '../../utils/categories';
 
 function validate(values) {
   const errors = {};

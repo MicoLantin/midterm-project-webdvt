@@ -18,7 +18,7 @@ export default function TransactionDetail() {
   if (!transaction) {
     return (
       <div className="page-detail">
-        <h1>transaction not found</h1>
+        <h1>Transaction not found</h1>
         <p>this transaction doesn't exist — maybe it was already deleted.</p>
         <Link to="/" className="btn btn--primary">
           back to dashboard
@@ -39,7 +39,7 @@ export default function TransactionDetail() {
 
   return (
     <div className="page-detail">
-      <h1>transaction detail</h1>
+      <h1>Transaction detail</h1>
       <Panel>
         {editing ? (
           <TransactionForm initialValues={transaction} submitLabel="save changes" onSubmit={handleUpdate} />

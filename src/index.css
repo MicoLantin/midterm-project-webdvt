@@ -234,8 +234,9 @@ a {
   right: 0;
   bottom: 12vh;
   text-align: center;
-  font-family: 'Caveat', cursive;
-  font-size: 22px;
+  font-family: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   color: #c9c7bf;
   margin: 0;
   transition: opacity 200ms ease;
