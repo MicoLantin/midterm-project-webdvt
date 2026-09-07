@@ -10,9 +10,11 @@
 :root[data-theme='dark'] {
   --paper: #121110;
   --panel: #1b1a17;
-  --ink: #f2f0ea;
-  --ink-soft: #b3b0a6;
-  --line: #f2f0ea;
+  /* Softened from near-white (#f2f0ea) — full-brightness text/borders on
+     a near-black background is harsh to look at for long stretches. */
+  --ink: #d9d6cc;
+  --ink-soft: #9c988c;
+  --line: #d9d6cc;
   --line-soft: #45433c;
 }
 
