@@ -8,6 +8,13 @@ import { useTypewriter } from '../../hooks/useTypewriter';
 // face to 'sad' yet — that trigger condition is still to be decided.
 const FACES = { smile: smileFace, talking: talkingFace, sad: sadFace };
 
+// The three source photos frame the character at slightly different zoom
+// levels (measured by the fraction of each square canvas the character's
+// linework actually fills: smile 92.3%, talking 97.9%, sad 93.9%). These
+// counter-scale factors even that out so switching faces doesn't make the
+// character visibly grow or shrink.
+const FACE_SCALE = { smile: 1.06, talking: 1, sad: 1.04 };
+
 const EMPTY_LINES = ["No transactions yet. I'm bored, log something na."];
 const LOW_BALANCE_LINES = ['Broke ka na naman, boi! Ang yabang mo pa!', 'Konti na lang imong kwarta. Chill on the spending.'];
 const BIG_EXPENSE_LINES = ['Ang laki naman ng gastos mo... you sure about that?'];
@@ -35,7 +42,13 @@ export default function CompanionDialogueBox({ balance, hasTransactions, latestE
   return (
     <div className="companion">
       <div className="companion__avatar">
-        <img src={FACES[face]} alt="" className="companion__face" draggable={false} />
+        <img
+          src={FACES[face]}
+          alt=""
+          className="companion__face"
+          draggable={false}
+          style={{ transform: `scale(${FACE_SCALE[face]})` }}
+        />
       </div>
       <div className="companion__bubble">{displayedText}</div>
     </div>
