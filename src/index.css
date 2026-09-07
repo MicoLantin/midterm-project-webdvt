@@ -26,6 +26,15 @@ body,
   height: 100%;
 }
 
+/* Some pages are tall enough to need a scrollbar and some aren't. Without
+   this, centered content visibly shifts sideways when navigating between
+   them, since the scrollbar's width changes how much room is left to
+   center within. Always reserving that space keeps every page aligned. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   background: var(--paper);
