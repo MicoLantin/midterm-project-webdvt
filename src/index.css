@@ -98,6 +98,16 @@ a {
   padding: 20px 16px 100px;
 }
 
+.site-header {
+  font-family: 'Press Start 2P', 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--line);
+}
+
 .nav-bar {
   position: fixed;
   bottom: 0;
@@ -214,8 +224,8 @@ a {
   width: auto;
   max-width: 90vw;
   transform: translate(-50%, 0);
-  transition: top 650ms cubic-bezier(0.4, 0, 0.2, 1), left 650ms cubic-bezier(0.4, 0, 0.2, 1),
-    height 650ms cubic-bezier(0.4, 0, 0.2, 1), transform 650ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: top 500ms cubic-bezier(0.4, 0, 0.2, 1), left 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    height 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   user-select: none;
   mix-blend-mode: screen;
@@ -271,18 +281,20 @@ a {
 }
 
 .splash__flash.is-active {
-  animation: splashFlash 650ms ease forwards;
+  animation: splashFlash 500ms ease forwards;
 }
 
+/* Fades in fast, then holds at full brightness until the page swaps in
+   underneath it — "the light turns on" as a distinct beat, not a blip. */
 @keyframes splashFlash {
   0% {
     opacity: 0;
   }
-  55% {
+  30% {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -733,6 +745,12 @@ a {
   .app-shell__content {
     max-width: 960px;
     padding: 32px 40px 120px;
+  }
+
+  .site-header {
+    font-size: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 26px;
   }
 
   .nav-bar__inner {

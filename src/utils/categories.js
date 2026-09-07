@@ -1,6 +1,6 @@
 export const EXPENSE_CATEGORIES = ['Food', 'Transportation', 'Load', 'Bills', 'Entertainment', 'Shopping', 'Other'];
 
-export const INCOME_CATEGORIES = ['Allowance', 'Savings', 'Other'];
+export const INCOME_CATEGORIES = ['Allowance', 'Savings'];
 
 // Union of both lists, for places that filter/group across all transactions
 // regardless of type (e.g. the dashboard's category filter, when "all

@@ -7,7 +7,9 @@ import { prefersReducedMotion } from '../../utils/motion';
 
 const FRAMES = [frame1, frame2, frame3];
 const FRAME_INTERVAL_MS = 260;
-const FLY_DURATION_MS = 650;
+// Time from click to actually revealing the page — the light "stays on"
+// for this long first, like flipping a switch before you see the room.
+const REVEAL_DELAY_MS = 500;
 
 export default function Splash({ onEnter }) {
   const [frameIndex, setFrameIndex] = useState(0);
@@ -33,7 +35,7 @@ export default function Splash({ onEnter }) {
       return;
     }
     setFlying(true);
-    window.setTimeout(onEnter, FLY_DURATION_MS);
+    window.setTimeout(onEnter, REVEAL_DELAY_MS);
   }
 
   return (
