@@ -1,19 +1,14 @@
 import { useMemo } from 'react';
-import smileFace from '../../assets/companion/smile.jpg';
-import talkingFace from '../../assets/companion/talking.jpg';
-import sadFace from '../../assets/companion/sad.jpg';
+import { useTheme } from '../../context/ThemeContext';
+import smileLightFace from '../../assets/companion/smile-light.jpg';
+import smileDarkFace from '../../assets/companion/smile-dark.jpg';
 import { useTypewriter } from '../../hooks/useTypewriter';
 
-// 'sad' is imported and mapped here so it's ready, but nothing sets
-// face to 'sad' yet — that trigger condition is still to be decided.
-const FACES = { smile: smileFace, talking: talkingFace, sad: sadFace };
-
-// The three source photos frame the character at slightly different zoom
-// levels (measured by the fraction of each square canvas the character's
-// linework actually fills: smile 92.3%, talking 97.9%, sad 93.9%). These
-// counter-scale factors even that out so switching faces doesn't make the
-// character visibly grow or shrink.
-const FACE_SCALE = { smile: 1.06, talking: 1, sad: 1.04 };
+// The happy face has real artwork for each theme (not a CSS color
+// invert) — a calm, eyes-open look for light mode and a dim,
+// eyes-closed look for dark mode. Both are framed identically, so no
+// per-image scale correction is needed here.
+const SMILE_FACE = { light: smileLightFace, dark: smileDarkFace };
 
 const EMPTY_LINES = ["No transactions yet. I'm bored, log something na."];
 const LOW_BALANCE_LINES = ['Broke ka na naman, boi! Ang yabang mo pa!', 'Konti na lang imong kwarta. Chill on the spending.'];
@@ -29,26 +24,20 @@ function pickLine({ balance, hasTransactions, latestExpense }) {
 }
 
 export default function CompanionDialogueBox({ balance, hasTransactions, latestExpense }) {
+  const { theme } = useTheme();
   const line = useMemo(
     () => pickLine({ balance, hasTransactions, latestExpense }),
     [balance, hasTransactions, latestExpense],
   );
 
   const { displayedText } = useTypewriter(line);
-  // Locked to the happy sprite for now — swapping to 'talking' while typing
-  // (and eventually 'sad') is still wired up below, just not enabled yet.
-  const face = 'smile';
+  // Locked to the happy sprite for now — talking/sad art will come back
+  // once the full expression set has light/dark pairs like this one does.
 
   return (
     <div className="companion">
       <div className="companion__avatar">
-        <img
-          src={FACES[face]}
-          alt=""
-          className="companion__face"
-          draggable={false}
-          style={{ transform: `scale(${FACE_SCALE[face]})` }}
-        />
+        <img src={SMILE_FACE[theme]} alt="" className="companion__face" draggable={false} />
       </div>
       <div className="companion__bubble">{displayedText}</div>
     </div>

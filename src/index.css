@@ -340,14 +340,14 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Light theme's art is dark linework on white — multiply hides the
+     white card so it blends into the panel. */
   mix-blend-mode: multiply;
 }
 
-/* Dark theme: the sprite is dark linework on a white card. Inverting first
-   (dark bg, white lines) then screening lets the (now-dark) card
-   background disappear into the panel while the linework renders white. */
+/* Dark theme's art is already white-on-black (real artwork, not an
+   inverted copy) — screen hides the black card the same way. */
 :root[data-theme='dark'] .companion__face {
-  filter: invert(1);
   mix-blend-mode: screen;
 }
 
