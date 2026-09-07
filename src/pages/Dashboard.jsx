@@ -5,6 +5,7 @@ import CompanionDialogueBox from '../components/ui/CompanionDialogueBox';
 import ThemeToggleButton from '../components/ui/ThemeToggleButton';
 import Panel from '../components/ui/Panel';
 import BalanceCard from '../components/transactions/BalanceCard';
+import BudgetTracker from '../components/transactions/BudgetTracker';
 import FilterBar from '../components/transactions/FilterBar';
 import TransactionList from '../components/transactions/TransactionList';
 
@@ -41,6 +42,11 @@ export default function Dashboard() {
       </div>
 
       <BalanceCard balance={balance} />
+
+      <Panel>
+        <h2>budget</h2>
+        <BudgetTracker />
+      </Panel>
 
       <Panel className="dashboard-list">
         <div className="dashboard-list__head">
